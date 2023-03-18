@@ -34,7 +34,7 @@
 							<textarea name="comment" id="comment" class="bio"></textarea>
 							<input type="submit" name="postcomment" value="Post a Comment" class="submit_btn">
 						</form>
-						<h3>5 Comments</h3>
+						<h3>{{ comment_count }} Comments</h3>
 						{% for comment in comments %}
 							<div class="comment_box">
 								<div class="profile">
