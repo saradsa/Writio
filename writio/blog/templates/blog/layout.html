@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/css/styles.css' %}">
+    <title>{% block title %}{% endblock %}</title>
+    <script src="{% static 'blog/js/carousel.js' %}"></script>
+    <script src="{% static 'blog/js/reload.js' %}"></script>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <div class="site-logo">
+          <h1>Writio</h1>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            {% for category in categories %}
+              <li><a href="{% url 'category' category %}">{{ category }}</a></li>
+            {% endfor %}
+            {% if user.is_authenticated %}
+              <li class="write"><a href="{% url 'write' %}">WRITE</a></li>
+              <li class="logout"><a href="{% url 'logout' %}">Log Out</a></li>
+            {% else %}
+              <li class="signin"><a href="{% url 'login' %}">Sign In</a></li>
+            {% endif %}
+          </ul>
+          <div class="ruler"></div>
+        </nav>
+        {% block header %}{% endblock %}
+      </header>
+      <main>
+        <div class="container">
+          {% block content %}{% endblock %}
+          
+        </main>
+        <footer>
+          {% block footer %}{% endblock %}
+        </footer>
+      </div>
+    </body>
+  </html>

@@ -1,0 +1,86 @@
+{% extends "blog/layout.html" %}
+{% load static %}
+{% block title %}
+	{{ blog.title }}
+{% endblock %}
+{% block content %}
+	<div class="all_posts">
+		<div class="content">
+			<div class="posts">
+				<div class="single_post">
+					<img src="{{ MEDIA_URL }}{{ blog.cover_image.url }}">
+					<div class="detail">
+						<img src="{{ MEDIA_URL }}{{ blog.author.profile_picture.url }}">
+						<span>•</span>
+						<p>{{ blog.author }}</p>
+						<span>•</span>
+						<p>{{ blog.publish_date.date }}</p>
+						<span>•</span>
+						<p>{{ blog.views }} views</p>
+					</div>
+					<div class="main_blog">
+						<h1>{{ blog.title }}</h1>
+						<div class="badges">
+							<div class="badge">{{ blog.category }}</div>
+						</div>
+						<p>
+							{{ blog.content }}
+						</p>
+						<div class="category">Category: <a href="{% url 'category' blog.category %}">{{ blog.category }}</a></div>
+					</div>
+					<div class="comments">
+						<form method="post" action="{% url 'single_blog' blog.id %}">
+							{% csrf_token %}
+							<textarea name="comment" id="comment" class="bio"></textarea>
+							<input type="submit" name="postcomment" value="Post a Comment" class="submit_btn">
+						</form>
+						<h3>5 Comments</h3>
+						{% for comment in comments %}
+							<div class="comment_box">
+								<div class="profile">
+									<img src="{{ MEDIA_URL }}{{ comment.author.profile_picture.url }}">
+								</div>
+								<div class="comment_content">
+									<h5>{{ comment.author.first_name }} {{ comment.author.last_name }}</h5>
+									<p class="date">{{ comment.comment_date }}</p>
+									<p class="comment_text">{{ comment.comment }}</p>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+			<div class="popular_posts">
+				<h3>More Content You'll Love</h3>
+				<ul>
+					{% for blog in threeblogs %}
+						<li>
+							<a href="{% url 'single_blog' blog.id %}">
+								<div class="pop_container">
+									<img src="{{ MEDIA_URL }}{{ blog.cover_image.url }}">
+									<div class="det_cont">
+										<h4>{{ blog.title }}</h4>
+										<p>{{ blog.publish_date.date }}</p>
+									</div>
+								</div>
+							</a>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+			<div class="categories">
+				<h3>Categories</h3>
+				<ul>
+					{% for category,number in allposts %}
+						<li>
+							<a href="{% url 'category' category %}">
+								<p class="cat_name">{{ category }}</p>
+								<p class="cat_num">({{ number }})</p>
+							</a>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+{% endblock %}

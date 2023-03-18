@@ -1,0 +1,83 @@
+{% extends "blog/layout.html" %}
+{% load static %}
+{% block title %}
+	Create an Account
+{% endblock %}
+{% block content %}
+	<div class="register_form">
+		<h2>SIGN UP!!</h2>
+		<p>Ready to be a part of something big? Register now and let's create magic!</p>
+		<form action="{% url 'register' %}" method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			<table>
+				<tr>
+					<td class="input_label">
+						<label for="first_name">First Name:</label>
+					</td>
+					<td class="input_box">
+						<input type="text" name="first_name" id="first_name">
+					</td>
+				</tr>
+				<tr>
+					<td class="input_label">
+						<label for="last_name">Last Name:</label>
+					</td>
+					<td class="input_box">
+						<input type="text" name="last_name" id="last_name">
+					</td>
+				</tr>
+				<tr>
+					<td class="input_label">
+						<label for="username">Username:</label>
+					</td>
+					<td class="input_box">
+						<input type="text" name="username" id="username">
+					</td>
+				</tr>
+				<tr>
+					<td class="input_label">
+						<label for="email">Email:</label>
+					</td>
+					<td class="input_box">
+						<input type="email" name="email" id="email">
+					</td>
+				</tr>
+				<tr>
+					<td class="input_label">
+						<label for="password">Password:</label>
+					</td>
+					<td class="input_box">
+						<input type="password" name="password" id="password">
+					</td>
+				</tr>
+				<tr>
+					<td class="input_label">
+						<label for="confirmation">Confirm Password:</label>
+					</td>
+					<td class="input_box">
+						<input type="password" name="confirmation" id="confirmation">
+						<p>{{ password_message }}</p>
+					</td>
+				</tr>
+				<tr>
+					<td class="input_label">
+						<label for="bio">Bio:</label>
+					</td>
+					<td class="input_box">
+						<textarea name="bio" id="bio" class="bio"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td class="input_label">
+						<label for="profile_picture">Profile Picture:</label>
+					</td>
+					<td class="input_box">
+						<input type="file" name="profile_picture" id="profile_picture">
+					</td>
+				</tr>
+			</table>
+			<input type="submit" name="signup" value="Sign Up" class="submit_btn">
+		</form>
+		<p class="reminder">Already have an account? <a href="{% url 'login' %}">Log In here.</a></p>
+	</div>
+{% endblock %}

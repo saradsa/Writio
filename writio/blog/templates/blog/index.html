@@ -1,0 +1,91 @@
+{% extends "blog/layout.html" %}
+{% load static %}
+{% block title %}
+	Writio
+{% endblock %}
+{% block content %}
+	
+	<div class="carousel">
+		<div class="carousel-container">
+			{% for blog in randomblogs %}
+				<div class="carousel-item" style="background-image: url('{{ MEDIA_URL }}{{ blog.cover_image.url  }}');">
+					<a href="{% url 'single_blog' blog.id %}">
+						<div class="badges">
+							<div class="badge">{{ blog.category }}</div>
+						</div>
+						<div class="detail">
+							<img src="{{ MEDIA_URL }}{{ blog.author.profile_picture.url }}">
+							<span>•</span>
+							<p>{{ blog.author }}</p>
+							<span>•</span>
+							<p>{{ blog.publish_date.date }}</p>
+						</div>
+						<h4>{{ blog.title }}</h4>
+						<h5>{{ blog.snippet }}</h5>
+					</a>
+				</div>
+			{% endfor %}
+		</div>
+		<button class="carousel-btn carousel-btn-prev"><</button>
+		<button class="carousel-btn carousel-btn-next">></button>
+	</div>
+	
+	<div class="all_posts">
+		<div class="content">
+			<div class="posts">
+				<h2>Latest Posts</h2>
+				<div class="post_cards">
+					{% for blog in blogs %}
+						<a href="{% url 'single_blog' blog.id %}">
+							<div class="card">
+								<img src="{{ MEDIA_URL }}{{ blog.cover_image.url }}">
+								<div class="detail">
+									<img src="{{ MEDIA_URL }}{{ blog.author.profile_picture.url }}">
+									<span>•</span>
+									<p>{{ blog.author }}</p>
+									<span>•</span>
+									<p>{{ blog.publish_date.date }}</p>
+									<span>•</span>
+									<p>{{ blog.views }} views</p>
+								</div>
+								<h3>{{ blog.title }}</h3>
+							</div>
+						</a>
+					{% endfor %}
+				</div>
+			</div>
+			<div class="popular_posts">
+				<h3>Popular Posts</h3>
+				<ul>
+					{% for blog in popblogs %}
+						<li>
+							<a href="{% url 'single_blog' blog.id %}">
+								<div class="pop_container">
+									<img src="{{ MEDIA_URL }}{{ blog.cover_image.url }}">
+									<div class="det_cont">
+										<h4>{{ blog.title }}</h4>
+										<p>{{ blog.publish_date.date }}</p>
+									</div>
+								</div>
+							</a>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+			<div class="categories">
+				<h3>Categories</h3>
+				<ul>
+					{% for category,number in allposts %}
+						<li>
+							<a href="{% url 'category' category %}">
+								<p class="cat_name">{{ category }}</p>
+								<p class="cat_num">({{ number }})</p>
+							</a>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+	Hello
+{% endblock %}
