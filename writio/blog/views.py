@@ -1,6 +1,7 @@
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
+from django.db.models import Count
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
@@ -139,13 +140,18 @@ def single_blog(request, blog_id):
 	if get_current_user(request) != blog.author:
 			blog.views += 1
 	blog.save()
-
+	blog = Blog.objects.get(pk=blog_id)
+	comments = Comment.objects.filter(post=blog)
+	
+	comment_count = comments.count()
+	
 	return render(request, "blog/single_blog.html", {
 		"blog": blog,
 		"threeblogs": get_random_posts(),
 		"categories": get_all_categories(),
 		"allposts": get_category_number(),
-		"comments": get_comments(blog_id)
+		"comments": get_comments(blog_id),
+		"comment_count": comment_count
 		})
 
 
