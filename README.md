@@ -2,19 +2,19 @@
 
 Your source for diverse content.
 
-[View Demo](#) · [Report Bug](#) · [Request Feature](#)
+[View Demo](writio.pythonanywhere.com) · [Request Additions](github.com/saradsa/Writio/issues)
 
-## Features
+## 💎 Features
 - Create, update and edit blog posts.
 - User registration and login
 - Comment and express your opinions on blog posts
 - Filter blog posts according to categories
 
-## Tech Stack
+## 🛠️ Tech Stack
 - Django
 - SQLite
 
-## Local Development
+## 🚀 Local Development
 Run the project in your machine locally.
 
 ### Step 1: Clone the repository
@@ -53,10 +53,10 @@ cd writio
 python manage.py runserver
 ```
 
-## Contributing
-I'd love if you'd contribute to the project.
+## 🤝 Contribute
+Feel free to contribute more to the project
 
-After cloning & setting up the local project you can push the changes to your github fork and make a pull request.
+Once you have cloned the project and set it up locally, you can contribute changes by pushing them to your own fork of the repository on GitHub and creating a pull request.
 
 
 
