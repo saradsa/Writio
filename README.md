@@ -2,7 +2,7 @@
 
 Your source for diverse content.
 
-[View Demo](writio.pythonanywhere.com) · [Request Additions](/issues)
+[View Demo](writio.pythonanywhere.com) · [Request Additions](https://github.com/saradsa/Writio/issues)
 
 ## 💎 Features
 - Create, update and edit blog posts.
